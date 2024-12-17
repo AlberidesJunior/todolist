@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tarefas</title>
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+    
+    <a href="/criar-tarefa">Adicionar Nova Tarefa</a>
+    
+    <ul>
+        <li th:each="tarefa : ${tarefas}">
+            <span th:text="${tarefa.descricao}"></span>
+            <span th:if="${tarefa.concluida}"> - Concluída</span>
+            <a th:href="@{/concluir-tarefa(id=${tarefa.id})}" th:if="${!tarefa.concluida}">Concluir</a>
+            <a th:href="@{/deletar-tarefa(id=${tarefa.id})}">Excluir</a>
+        </li>
+    </ul>
+</body>
+</html>
